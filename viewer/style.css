@@ -48,7 +48,7 @@ body {
   pointer-events: none;
 }
 
-/* UI LAYER */
+/* UI LAYER BOTTOM */
 #ui-layer {
   position: absolute;
   bottom: 2rem;
@@ -61,25 +61,78 @@ body {
   z-index: 1000;
   transition: opacity 0.5s ease;
 }
-#ui-layer.hidden {
-  opacity: 0;
+
+/* UI LAYER TOP */
+#top-ui-layer {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  right: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   pointer-events: none;
+  z-index: 1000;
+  transition: opacity 0.5s ease;
+}
+
+/* ELEMENTOS DE UI QUE SE OCULTAN JUNTOS */
+#ui-layer.hidden {
+  opacity: 1; /* El contenedor se queda en 1, gestionamos hijos */
+  pointer-events: none;
+}
+#top-ui-layer.hidden {
+  opacity: 1;
+  pointer-events: none;
+}
+
+/* El botón del ojo siempre está visible y con eventos */
+.eye-btn {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+/* Ocultamiento base para los hijos cuando el parent es .hidden */
+#ui-layer.hidden .logo-container,
+#ui-layer.hidden .nav-container,
+#ui-layer.hidden .pagination-dots,
+#top-ui-layer.hidden .fullscreen-btn {
+  opacity: 0;
+  pointer-events: auto; /* Permite detectar el mouse */
+  transition: opacity 0.4s ease;
+}
+
+/* EFECTO REVELAR AL ACERCARSE AL BOTON OCULTO */
+#ui-layer.hidden .logo-container:hover,
+#ui-layer.hidden .nav-container:hover,
+#ui-layer.hidden .pagination-dots:hover,
+#top-ui-layer.hidden .fullscreen-btn:hover {
+  opacity: 0.5;
+}
+
+.hidden-icon {
+  display: none;
 }
 
 /* LOGO CONTAINER */
 .logo-container,
 .nav-container,
-.pagination-dots {
+.pagination-dots,
+.fullscreen-btn {
   pointer-events: auto;
 }
 .logo-container {
-  transition: transform 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 .logo-container:hover {
-  transform: scale(1.02);
+  transform: translateY(-2px) scale(1.05);
+}
+.logo-container:active {
+  transform: scale(0.95);
 }
 
 /* NAVEGACIÓN DERECHA (SOLO BOTONES) */
