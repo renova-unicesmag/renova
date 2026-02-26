@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Capacidades | Renova</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+  </head>
+  <body>
+    <!-- Background Animated Gradients -->
+    <div class="bg-gradients">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Capsule Navigation -->
+    <nav class="capsule-nav-wrapper">
+      <div class="capsule-nav glass-panel">
+        <div class="nav-brand">
+          <a href="index.html" style="color: inherit; text-decoration: none"
+            >RENOVA</a
+          >
+        </div>
+        <div class="nav-links">
+          <a href="identidad.html"><i data-feather="users"></i> Identidad</a>
+          <a href="capacidades.html" class="active-link"
+            ><i data-feather="grid"></i> Capacidades</a
+          >
+          <a href="proyectos.html"><i data-feather="camera"></i> Archivo</a>
+        </div>
+        <div class="nav-controls">
+          <button
+            id="theme-toggle"
+            class="icon-toggle"
+            aria-label="Cambiar Tema"
+          >
+            <i data-feather="sun" class="icon-sun"></i>
+            <i data-feather="moon" class="icon-moon"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="page-content" style="padding-top: 150px; min-height: 80vh">
+      <section
+        class="projects"
+        style="
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 0 5%;
+          margin-bottom: 100px;
+        "
+      >
+        <h1
+          class="brand-title text-center"
+          style="font-size: 3.5rem; margin-bottom: 1rem; text-align: center"
+        >
+          Nuestras <span class="highlight">Capacidades</span>
+        </h1>
+        <p
+          style="
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin-inline: auto;
+          "
+        >
+          Como estudio académico conceptual, Renova enfoca su investigación y
+          despliegue de diseño en estrategias realistas de bajo impacto que
+          buscan subvertir las estructuras de consumo tradicionales.
+        </p>
+
+        <div
+          class="team-grid"
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+          "
+        >
+          <!-- Capacidad 1 -->
+          <div
+            class="team-card glass-panel"
+            style="padding: 3rem 2rem; border-radius: 20px; text-align: center"
+          >
+            <div
+              style="
+                background: var(--glass-bg-hover);
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 2rem;
+                color: var(--accent-turq);
+                border: 1px solid var(--glass-border);
+              "
+            >
+              <i data-feather="activity" style="width: 32px; height: 32px"></i>
+            </div>
+            <h3
+              style="
+                font-family: var(--font-display);
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+              "
+            >
+              Auditoría Ambiental (ACV)
+            </h3>
+            <p
+              style="
+                font-size: 1rem;
+                color: var(--text-secondary);
+                line-height: 1.6;
+              "
+            >
+              Evaluación sistémica de impactos ambientales en todas las etapas
+              de un producto, desde la extracción de materias primas hasta su
+              disposición final, para la toma de decisiones ecológicas.
+            </p>
+          </div>
+
+          <!-- Capacidad 2 -->
+          <div
+            class="team-card glass-panel"
+            style="padding: 3rem 2rem; border-radius: 20px; text-align: center"
+          >
+            <div
+              style="
+                background: var(--glass-bg-hover);
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 2rem;
+                color: var(--accent-turq);
+                border: 1px solid var(--glass-border);
+              "
+            >
+              <i
+                data-feather="refresh-cw"
+                style="width: 32px; height: 32px"
+              ></i>
+            </div>
+            <h3
+              style="
+                font-family: var(--font-display);
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+              "
+            >
+              Sistemas Zero Waste
+            </h3>
+            <p
+              style="
+                font-size: 1rem;
+                color: var(--text-secondary);
+                line-height: 1.6;
+              "
+            >
+              Diseño de sistemas cerrados donde los residuos se convierten en
+              nutrientes. Implementamos modelos de simbiosis industrial y
+              logística inversa para eliminar el concepto de desperdicio.
+            </p>
+          </div>
+
+          <!-- Capacidad 3 -->
+          <div
+            class="team-card glass-panel"
+            style="padding: 3rem 2rem; border-radius: 20px; text-align: center"
+          >
+            <div
+              style="
+                background: var(--glass-bg-hover);
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 2rem;
+                color: var(--accent-turq);
+                border: 1px solid var(--glass-border);
+              "
+            >
+              <i data-feather="box" style="width: 32px; height: 32px"></i>
+            </div>
+            <h3
+              style="
+                font-family: var(--font-display);
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+              "
+            >
+              Empaque Circular
+            </h3>
+            <p
+              style="
+                font-size: 1rem;
+                color: var(--text-secondary);
+                line-height: 1.6;
+              "
+            >
+              Prototipado estructural circular y análisis del ciclo de vida.
+              Buscamos optimizar la logística mediante geometrías eficientes y
+              reducción drástica de plástico de un solo uso.
+            </p>
+          </div>
+
+          <!-- Capacidad 4 -->
+          <div
+            class="team-card glass-panel"
+            style="padding: 3rem 2rem; border-radius: 20px; text-align: center"
+          >
+            <div
+              style="
+                background: var(--glass-bg-hover);
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 2rem;
+                color: var(--accent-turq);
+                border: 1px solid var(--glass-border);
+              "
+            >
+              <i data-feather="layers" style="width: 32px; height: 32px"></i>
+            </div>
+            <h3
+              style="
+                font-family: var(--font-display);
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+              "
+            >
+              Moda Sostenible
+            </h3>
+            <p
+              style="
+                font-size: 1rem;
+                color: var(--text-secondary);
+                line-height: 1.6;
+              "
+            >
+              Investigación en patronaje Zero Waste y upcycling. Aprovechamos
+              remanentes textiles para crear narrativas de moda de impacto sin
+              requerir extracción virgen.
+            </p>
+          </div>
+
+          <!-- Capacidad 5 -->
+          <div
+            class="team-card glass-panel"
+            style="padding: 3rem 2rem; border-radius: 20px; text-align: center"
+          >
+            <div
+              style="
+                background: var(--glass-bg-hover);
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 2rem;
+                color: var(--accent-turq);
+                border: 1px solid var(--glass-border);
+              "
+            >
+              <i data-feather="monitor" style="width: 32px; height: 32px"></i>
+            </div>
+            <h3
+              style="
+                font-family: var(--font-display);
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+              "
+            >
+              Campañas Publicitarias
+            </h3>
+            <p
+              style="
+                font-size: 1rem;
+                color: var(--text-secondary);
+                line-height: 1.6;
+              "
+            >
+              Articulación de activaciones creativas en formatos digitales y
+              físicos; planeación de medios y diseño de piezas con enfoque
+              táctico para escalar la presencia de la marca en nichos
+              específicos.
+            </p>
+          </div>
+
+          <!-- Capacidad 6 -->
+          <div
+            class="team-card glass-panel"
+            style="padding: 3rem 2rem; border-radius: 20px; text-align: center"
+          >
+            <div
+              style="
+                background: var(--glass-bg-hover);
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 2rem;
+                color: var(--accent-turq);
+                border: 1px solid var(--glass-border);
+              "
+            >
+              <i data-feather="crosshair" style="width: 32px; height: 32px"></i>
+            </div>
+            <h3
+              style="
+                font-family: var(--font-display);
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+              "
+            >
+              Mkt. Guerrilla (Activismo)
+            </h3>
+            <p
+              style="
+                font-size: 1rem;
+                color: var(--text-secondary);
+                line-height: 1.6;
+              "
+            >
+              Estrategia conceptual e intervenciones disruptivas urbanas para
+              exponer las fallas sistémicas sociales, educando al espectador a
+              través del impacto visual audaz.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="glass-footer">
+      <div class="footer-content">
+        <div class="footer-logo">RENOVA</div>
+        <div class="footer-info">© 2026 Shamy]™ Creative Studio</div>
+      </div>
+    </footer>
+
+    <script>
+      feather.replace();
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
