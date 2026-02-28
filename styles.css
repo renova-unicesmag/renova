@@ -675,25 +675,276 @@ h3,
   color: var(--text-secondary);
 }
 
-/* RESPONSIVE */
-@media (max-width: 968px) {
-  .capsule-nav {
-    gap: 1rem;
-    padding: 0.8rem 1rem;
+/* ================================================================
+   HAMBURGER MENU — visible only on mobile
+   ================================================================ */
+.nav-hamburger {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 8px;
+  transition: color 0.3s ease;
+}
+.nav-hamburger:hover {
+  color: var(--accent-turq);
+}
+.nav-hamburger i {
+  width: 24px;
+  height: 24px;
+}
+
+/* Mobile dropdown overlay — invisible, just catches outside taps */
+.mobile-nav-drawer {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 998;
+}
+.mobile-nav-drawer.open {
+  display: block;
+}
+
+/* Invisible backdrop — closes menu on tap outside */
+.drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+}
+
+/* The dropdown panel — floats below the nav, centered */
+.drawer-panel {
+  position: fixed;
+  top: 5.2rem; /* just below the floating nav capsule */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  min-width: 220px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow), var(--glass-highlight);
+  border-radius: 30px; /* same radius as back/share glass-panel buttons */
+  display: flex;
+  flex-direction: column;
+  padding: 0.6rem;
+  gap: 0.25rem;
+  animation: dropDown 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@keyframes dropDown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-8px);
   }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.drawer-panel a {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.75rem 1.2rem;
+  border-radius: 22px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.drawer-panel a:hover,
+.drawer-panel a.active-link {
+  color: var(--accent-turq);
+  background: var(--glass-bg-hover);
+  text-shadow: 0 0 10px var(--accent-glow);
+}
+.drawer-panel a i {
+  width: 18px;
+  height: 18px;
+}
+
+/* Hide the close button — not needed for a dropdown (tap outside closes it) */
+.drawer-close {
+  display: none;
+}
+
+/* ================================================================
+   RESPONSIVE — MOBILE  ≤ 768px
+   ================================================================ */
+@media (max-width: 768px) {
+  /* ---- NAV ---- */
+  .capsule-nav {
+    gap: 0;
+    padding: 0.7rem 1.2rem;
+    justify-content: space-between;
+    width: calc(100vw - 2.5rem);
+  }
+
   .nav-links {
     display: none;
+  } /* Hidden — use drawer instead */
+  .nav-hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Keep theme toggle visible beside hamburger */
+  .nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  /* ---- HERO (index.html) ---- */
+  .hero {
+    padding: 110px 5% 60px;
+    min-height: auto;
   }
 
   .hero-content {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 2rem;
   }
+
   .visual-features {
     align-items: center;
   }
 
+  /* Logo: replace the huge fixed-px wrapper with something that fits */
+  .hero-logo-container {
+    order: -1; /* show logo above text on mobile */
+  }
+
   .liquid-logo-wrapper {
-    transform: scale(0.6); /* Fallback scale for mobile only */
+    width: 220px !important;
+    height: 176px !important;
+    transform: none !important; /* remove the scale(0.6) fallback */
+    filter: drop-shadow(0 0 12px rgba(0, 235, 170, 0.3));
+  }
+
+  .brand-title {
+    font-size: 3.5rem;
+  }
+  .brand-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  /* ---- SPECIALTIES GRID (index.html) — 2-col → 1-col ---- */
+  div[style*="grid-template-columns: repeat(2, 1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* cap-tags: allow wrapping on very narrow screens */
+  .cap-tag {
+    white-space: normal !important;
+  }
+
+  /* ---- FUNCTIONS GRID ---- */
+  .glass-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* ---- PROJECTS GALLERY ---- */
+  .projects-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  /* ---- IDENTIDAD PAGE ---- */
+
+  /* "De dónde venimos" big heading: 5.5rem → clamped */
+  h2[style*="5.5rem"] {
+    font-size: clamp(2.2rem, 9vw, 4rem) !important;
+  }
+
+  /* Glass panel with 4rem padding → tighter on mobile */
+  .glass-panel.text-content,
+  .identity-section .glass-panel {
+    padding: 2rem 1.2rem !important;
+    margin: 0 1rem !important;
+  }
+
+  .r3-meaning {
+    flex-direction: column;
+    gap: 1rem !important;
+    align-items: center;
+  }
+
+  /* Team grid: already auto-fit minmax(300px,1fr) — override for mobile */
+  .team-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ---- CAPACIDADES PAGE ---- */
+  /* Page top padding (already set inline on main — needs override) */
+  .page-content[style*="padding-top: 150px"] {
+    padding-top: 110px !important;
+  }
+
+  /* ---- ARCHIVO-RIOPASTO PAGE ---- */
+
+  /* Article body: 4rem padding → tighter */
+  .article-body {
+    padding: 1.5rem 1rem !important;
+    border-radius: 16px !important;
+  }
+
+  /* Article main container: reduce side padding */
+  .article-layout {
+    padding-left: 4% !important;
+    padding-right: 4% !important;
+    padding-top: 110px !important;
+  }
+
+  /* Article h1: 4rem → fluid */
+  .article-header h1,
+  h1[style*="4rem"] {
+    font-size: clamp(2rem, 8vw, 3rem) !important;
+  }
+
+  /* Back-arrow button floats to left of nav capsule — gets cramped on mobile.
+     On mobile, move it inside the drawer or hide it since drawer has ← back. */
+  .capsule-nav-wrapper > div > a[href="archivo.html"] {
+    display: none;
+  }
+
+  /* ---- INTERACTIVE BANNER ---- */
+  .interactive-banner {
+    min-height: 220px;
+  }
+
+  /* ---- GENERAL TEXT SCALE ---- */
+  h1.brand-title[style*="3.5rem"] {
+    font-size: clamp(2rem, 7vw, 3.5rem) !important;
+  }
+
+  /* Footer */
+  .glass-footer {
+    padding: 2rem 1.5rem;
+  }
+}
+
+/* Narrow phones: ≤ 400px */
+@media (max-width: 400px) {
+  .brand-title {
+    font-size: 2.8rem;
+  }
+
+  .capsule-nav {
+    width: calc(100vw - 1.5rem);
+    padding: 0.6rem 1rem;
+  }
+
+  .liquid-logo-wrapper {
+    width: 170px !important;
+    height: 136px !important;
   }
 }

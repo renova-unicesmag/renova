@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initThemeToggle();
   initLogoParallax();
   initMockProjects();
+  initMobileNav();
 });
 
 // THEME TOGGLE (LIGHT / DARK)
@@ -196,5 +197,92 @@ function initMockProjects() {
       e.target.classList.add("active");
       renderProjects(e.target.dataset.filter);
     });
+  });
+}
+
+// MOBILE NAV — Hamburger + Slide Drawer
+function initMobileNav() {
+  const capsuleNav = document.querySelector(".capsule-nav");
+  const navControls = capsuleNav
+    ? capsuleNav.querySelector(".nav-controls")
+    : null;
+  const navLinks = capsuleNav ? capsuleNav.querySelector(".nav-links") : null;
+
+  if (!capsuleNav || !navControls) return;
+
+  // --- Inject hamburger button before nav-controls ---
+  const hamburger = document.createElement("button");
+  hamburger.className = "nav-hamburger";
+  hamburger.setAttribute("aria-label", "Abrir menú");
+  hamburger.innerHTML = '<i data-feather="menu"></i>';
+  navControls.before(hamburger);
+
+  // --- Build drawer HTML dynamically from existing nav-links ---
+  // Collect links from the page's nav-links div
+  const linkItems = navLinks ? Array.from(navLinks.querySelectorAll("a")) : [];
+
+  // Also check if we're on archivo-riopasto (has a back button)
+  const backBtn = document.querySelector(
+    '.capsule-nav-wrapper a[href="archivo.html"]',
+  );
+
+  let drawerLinksHTML = "";
+
+  // Add "Inicio" link always
+  drawerLinksHTML += `<a href="index.html"><i data-feather="home"></i> Inicio</a>`;
+
+  if (backBtn) {
+    drawerLinksHTML += `<a href="archivo.html"><i data-feather="arrow-left"></i> Volver al Archivo</a>`;
+  }
+
+  linkItems.forEach((link) => {
+    const clonedLink = link.cloneNode(true);
+    drawerLinksHTML += clonedLink.outerHTML;
+  });
+
+  const drawer = document.createElement("div");
+  drawer.className = "mobile-nav-drawer";
+  drawer.innerHTML = `
+    <div class="drawer-backdrop"></div>
+    <div class="drawer-panel">
+      <button class="drawer-close" aria-label="Cerrar menú">
+        <i data-feather="x"></i>
+      </button>
+      ${drawerLinksHTML}
+    </div>
+  `;
+  document.body.appendChild(drawer);
+
+  // Re-render feather icons inside the drawer
+  if (typeof feather !== "undefined") {
+    feather.replace();
+  }
+
+  // --- Open / Close logic ---
+  function openDrawer() {
+    drawer.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeDrawer() {
+    drawer.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+  hamburger.addEventListener("click", () => {
+    if (drawer.classList.contains("open")) {
+      closeDrawer();
+    } else {
+      openDrawer();
+    }
+  });
+  drawer
+    .querySelector(".drawer-backdrop")
+    .addEventListener("click", closeDrawer);
+  drawer.querySelector(".drawer-close").addEventListener("click", closeDrawer);
+
+  // Close drawer when a link is tapped
+  drawer.querySelectorAll(".drawer-panel a").forEach((link) => {
+    link.addEventListener("click", closeDrawer);
   });
 }
