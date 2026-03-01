@@ -210,7 +210,7 @@ function initMobileNav() {
 
   if (!capsuleNav || !navControls) return;
 
-  // --- Inject hamburger button before nav-controls ---
+  // --- Inject hamburger button BEFORE nav-controls ---
   const hamburger = document.createElement("button");
   hamburger.className = "nav-hamburger";
   hamburger.setAttribute("aria-label", "Abrir menú");
@@ -221,20 +221,7 @@ function initMobileNav() {
   // Collect links from the page's nav-links div
   const linkItems = navLinks ? Array.from(navLinks.querySelectorAll("a")) : [];
 
-  // Also check if we're on archivo-riopasto (has a back button)
-  const backBtn = document.querySelector(
-    '.capsule-nav-wrapper a[href="archivo.html"]',
-  );
-
   let drawerLinksHTML = "";
-
-  // Add "Inicio" link always
-  drawerLinksHTML += `<a href="index.html"><i data-feather="home"></i> Inicio</a>`;
-
-  if (backBtn) {
-    drawerLinksHTML += `<a href="archivo.html"><i data-feather="arrow-left"></i> Volver al Archivo</a>`;
-  }
-
   linkItems.forEach((link) => {
     const clonedLink = link.cloneNode(true);
     drawerLinksHTML += clonedLink.outerHTML;
@@ -261,12 +248,12 @@ function initMobileNav() {
   // --- Open / Close logic ---
   function openDrawer() {
     drawer.classList.add("open");
-    document.body.style.overflow = "hidden";
+    hamburger.classList.add("active");
   }
 
   function closeDrawer() {
     drawer.classList.remove("open");
-    document.body.style.overflow = "";
+    hamburger.classList.remove("active");
   }
 
   hamburger.addEventListener("click", () => {
