@@ -645,7 +645,7 @@ h3,
   color: #ffffff;
   background:
     linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url("viewer/01.jpg") center/cover;
+    url("visor/01.jpg") center/cover;
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
