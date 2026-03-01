@@ -579,18 +579,9 @@ h3,
   filter: invert(0);
 }
 
-[data-theme="light"] .project-bg {
-  opacity: 0.15;
-  /* No invert — preserving teal/blue palette in light mode */
-}
-
 .project-item:hover .project-bg {
   opacity: 0.6;
   transform: scale(1.05);
-}
-
-[data-theme="light"] .project-item:hover .project-bg {
-  opacity: 0.3;
 }
 
 .project-content {
