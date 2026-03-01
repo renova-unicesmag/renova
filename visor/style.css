@@ -23,6 +23,18 @@ body {
   height: 100%;
   position: relative;
   background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* FIXED RECROP FRAME */
+#frame {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
+  background: #000;
+  /* Width and height are dynamically managed by script.js */
 }
 
 /* WORLD WRAPPER (Camera Target) */
@@ -34,8 +46,6 @@ body {
   left: 0;
   transform-origin: 0 0;
   will-change: transform;
-  background: #000;
-  box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
   transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -210,6 +220,14 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* MEDIA QUERY TO LIFT DOTS IN PORTRAIT AVOIDING OVERLAP WITH BUTTONS */
+@media (orientation: portrait) {
+  .pagination-dots {
+    bottom: 5.5rem;
+  }
 }
 .dot {
   width: 6px;

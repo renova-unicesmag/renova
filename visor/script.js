@@ -56,7 +56,8 @@ const fsMinimize = document.getElementById("fs-icon-minimize");
 
 // MOTOR DE CÁMARA
 function updateCamera() {
-  if (!world) return;
+  const frame = document.getElementById("frame");
+  if (!world || !frame) return;
 
   const slide = slides[currentIndex];
 
@@ -65,12 +66,18 @@ function updateCamera() {
   const scaleY = window.innerHeight / 1080;
   const baseScale = Math.min(scaleX, scaleY);
 
-  // 2. Escala Final
+  // 2. Establecer el tamaño fijo del frame (Letterbox proporcional y estricto)
+  const frameWidth = 1920 * baseScale;
+  const frameHeight = 1080 * baseScale;
+  frame.style.width = frameWidth + "px";
+  frame.style.height = frameHeight + "px";
+
+  // 3. Escala Final
   const finalScale = baseScale * slide.zoom;
 
-  // 3. Traslación
-  const tx = window.innerWidth / 2 - slide.x * finalScale;
-  const ty = window.innerHeight / 2 - slide.y * finalScale;
+  // 4. Traslación referenciada al centro del frame, no al centro de toda la pantalla
+  const tx = frameWidth / 2 - slide.x * finalScale;
+  const ty = frameHeight / 2 - slide.y * finalScale;
 
   world.style.transform = `translate(${tx}px, ${ty}px) scale(${finalScale})`;
 }
